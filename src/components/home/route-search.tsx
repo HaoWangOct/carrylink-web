@@ -6,8 +6,8 @@ import {
   countryCities,
   type City,
   type Country,
-  type SearchValues,
-} from "@/content/sample-trips";
+} from "@/content/geography";
+import type { SearchValues } from "@/content/search-types";
 import { useLanguage } from "../language-provider";
 import { Button } from "../ui/button";
 

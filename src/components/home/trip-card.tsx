@@ -1,4 +1,5 @@
-import { cities, formatDate, type Trip } from "@/content/sample-trips";
+import { cities } from "@/content/geography";
+import { formatDate, type Trip } from "@/content/sample-trips";
 import { useLanguage } from "../language-provider";
 import { Button } from "../ui/button";
 

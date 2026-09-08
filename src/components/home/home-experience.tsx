@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { initialSearch, type SearchValues } from "@/content/sample-trips";
+import { initialSearch } from "@/content/sample-trips";
+import type { SearchValues } from "@/content/search-types";
 import { LanguageProvider } from "../language-provider";
 import { Navigation } from "../navigation";
 import { Footer } from "../footer";
