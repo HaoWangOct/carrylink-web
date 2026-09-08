@@ -1,10 +1,6 @@
-import {
-  cities,
-  formatDate,
-  sampleMatches,
-  type SearchValues,
-  type Trip,
-} from "@/content/sample-trips";
+import { cities } from "@/content/geography";
+import type { SearchValues } from "@/content/search-types";
+import { formatDate, sampleMatches, type Trip } from "@/content/sample-trips";
 import { useLanguage } from "../language-provider";
 import { SectionHeading } from "../ui/section-heading";
 import { Button } from "../ui/button";

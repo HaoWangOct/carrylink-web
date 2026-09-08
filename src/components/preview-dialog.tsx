@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { cities, formatDate, type Trip } from "@/content/sample-trips";
+import { cities } from "@/content/geography";
+import { formatDate, type Trip } from "@/content/sample-trips";
 import { useLanguage } from "./language-provider";
 import { Button } from "./ui/button";
 import { TravelerIdentity } from "./home/trip-card";

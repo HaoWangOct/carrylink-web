@@ -3,7 +3,7 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 import translations from "@/content/translations.json";
 import { uiCopy } from "@/content/ui-copy";
-import type { Language } from "@/content/sample-trips";
+import type { Language } from "@/content/geography";
 
 const LanguageContext = createContext<{
   lang: Language;
