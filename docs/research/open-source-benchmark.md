@@ -2,6 +2,8 @@
 
 Date/access date: 2026-09-08. Author: Research Architect. Status: research complete; recommendations **proposed**, not approved operating rules.
 
+Continuation note (2026-09-08): the latest brief expands the design scope to **China ↔ Germany**. Earlier directional observations below retain their historical research context. The [architecture](../architecture/architecture.md), [domain model](../architecture/domain-model.md), [roadmap](../architecture/roadmap.md), [ADR](../decisions/ADR-001-production-architecture.md) and [task record](research-task-record.md) now supply the synthesis; all policy/provider decisions remain pending. No new broad research was performed for that synthesis.
+
 ## Goal, scope, and evidence
 
 Study Mercur and Ever Demand for a small, web-only China → Germany carrying marketplace; inspect the actual CarryLink frontend; propose architecture without copying code. No application edits, installations, migrations, or feature implementation are authorized. The requested filenames override the research README's date-prefix convention. The [research task record](research-task-record.md) is in this directory because the user limited writes to research, architecture, and decisions.
