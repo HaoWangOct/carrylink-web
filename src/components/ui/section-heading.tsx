@@ -1,0 +1,20 @@
+export function SectionHeading({
+  eyebrow,
+  title,
+  id,
+  className = "",
+}: {
+  eyebrow: string;
+  title: string;
+  id?: string;
+  className?: string;
+}) {
+  return (
+    <div className={className}>
+      <p className="eyebrow">{eyebrow}</p>
+      <h2 id={id} className="heading">
+        {title}
+      </h2>
+    </div>
+  );
+}

@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-inter), Inter, system-ui, sans-serif;
+  --color-orange: #fc5000;
+  --color-orange-hover: #e04800;
+  --color-ink: #070607;
+  --color-ink-hover: #1a1918;
+  --color-surface: #f7f7f7;
+  --color-line: #e2e2e2;
+  --color-soft-line: #efefef;
+  --color-muted: #757575;
+  --color-body: #5a5a5a;
+  --color-peach: #fff3ed;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+body {
+  margin: 0;
+  background: #fff;
+  color: #070607;
+  font-family: var(--font-inter), Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+button,
+select,
+summary {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+:focus-visible {
+  outline: 2px solid #fc5000;
+  outline-offset: 4px;
+}
+::selection {
+  background: #fc5000;
+  color: white;
+}
+section[id] {
+  scroll-margin-top: 24px;
+}
+dialog::backdrop {
+  background: rgb(7 6 7 / 55%);
+  backdrop-filter: blur(3px);
+}
+dialog {
+  margin: auto;
+}
+summary {
+  list-style: none;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+input[type="date"] {
+  min-width: 0;
+}
+#route-search > .grid:first-child > .contents > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-[1248px] px-6;
+  }
+  .section-space {
+    @apply py-16 md:py-20;
+  }
+  .eyebrow {
+    @apply mb-3 text-xs font-semibold uppercase tracking-[1.5px] text-orange;
+  }
+  .heading {
+    @apply text-[32px] leading-[1.1] font-black tracking-[-1.5px] md:text-[40px];
+  }
+  .field-label {
+    @apply mb-2 block text-xs font-semibold uppercase tracking-[1.5px] text-muted;
+  }
+  .field {
+    @apply w-full min-w-0 rounded-xl border border-transparent bg-surface px-4 py-3 text-sm font-medium text-ink focus:border-orange focus:outline-none;
+  }
+  .card {
+    @apply rounded-2xl border border-line bg-white;
+  }
+  .text-link {
+    @apply text-sm font-semibold text-orange underline-offset-4 hover:underline;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,617 @@
+{
+  "en": {
+    "nav": {
+      "findTraveler": "Find a Traveler",
+      "carryItem": "Carry an Item",
+      "howItWorks": "How It Works",
+      "safety": "Safety",
+      "login": "Log in",
+      "getStarted": "Get Started"
+    },
+    "footer": {
+      "platform": "Platform",
+      "company": "Company",
+      "support": "Support",
+      "legal": "Legal",
+      "platformLinks": [
+        "Find a Traveler",
+        "Carry an Item",
+        "How It Works",
+        "Safety",
+        "Pricing"
+      ],
+      "companyLinks": ["About", "Careers", "Contact"],
+      "supportLinks": ["Help Center", "Cancellation", "Disputes", "Safety"],
+      "legalLinks": [
+        "Terms",
+        "Privacy",
+        "Traveler Agreement",
+        "Sender Agreement"
+      ],
+      "tagline": "Connecting travelers and senders between China and Germany.",
+      "rights": "© 2026 CarryLink. All rights reserved.",
+      "route": "China ↔ Germany · Peer-to-peer carrying marketplace"
+    },
+    "home": {
+      "badge": "237 trips available this month · China ↔ Germany",
+      "headline": "Someone is\nflying your way.",
+      "subheadline": "CarryLink connects travelers between China and Germany with people who need small items carried across borders.",
+      "searchFrom": "From",
+      "searchTo": "To",
+      "searchDate": "Date",
+      "searchWeight": "Weight",
+      "searchVolume": "Volume",
+      "searchFromCountry": "Departure Country",
+      "searchFromCity": "Departure City",
+      "searchToCountry": "Destination Country",
+      "searchToCity": "Destination City",
+      "countryGermany": "🇩🇪 Germany",
+      "countryChina": "🇨🇳 China",
+      "findTraveler": "Find a Traveler",
+      "imTraveling": "I'm Traveling →",
+      "germanyLabel": "Germany",
+      "germanyCity": "Munich, Frankfurt, Berlin",
+      "chinaLabel": "China",
+      "chinaCity": "Shanghai, Beijing, more",
+      "trustTitle": "Trust & Safety",
+      "trust": [
+        {
+          "label": "Verified Travelers",
+          "desc": "Every traveler is ID-verified before their first trip"
+        },
+        {
+          "label": "Transparent Pricing",
+          "desc": "See the full price before you confirm your request"
+        },
+        {
+          "label": "Secure Payments",
+          "desc": "Escrow-protected payments released on delivery"
+        },
+        {
+          "label": "Handover Verification",
+          "desc": "Digital codes confirm every transfer"
+        }
+      ],
+      "howBadge": "Simple process",
+      "howTitle": "How CarryLink works",
+      "steps": [
+        {
+          "title": "Create a trip or request",
+          "desc": "Travelers publish their upcoming flight. Senders publish what they need carried — photos, weight, and declared value included."
+        },
+        {
+          "title": "Get matched",
+          "desc": "CarryLink finds compatible routes, dates, capacity, and verified users. You see a match score, ratings, and full traveler history."
+        },
+        {
+          "title": "Meet and deliver",
+          "desc": "Confirm handover with a digital code, travel, and confirm delivery. Payment releases automatically once both sides confirm."
+        }
+      ],
+      "forTravelersBadge": "For Travelers",
+      "forTravelersTitle": "Your unused luggage space can be useful.",
+      "forTravelersDesc": "Already traveling between China and Germany? Carry small eligible items and earn money from your available capacity.",
+      "forTravelersAvg": "Avg. €180/trip earned",
+      "forTravelersCapacity": "From 2–8 kg of capacity",
+      "publishTrip": "Publish a Trip →",
+      "forSendersBadge": "For Senders",
+      "forSendersTitle": "Send small items with someone already flying.",
+      "forSendersDesc": "Find a verified traveler going your way and request to have a small item carried. Faster and more personal than freight.",
+      "forSendersAvg": "Avg. 5–7 day delivery",
+      "forSendersPrice": "From €20/kg, all-inclusive",
+      "createRequest": "Create a Request →",
+      "marketplaceBadge": "Live marketplace",
+      "marketplaceTitle": "Popular upcoming trips",
+      "viewAll": "View all trips →",
+      "viewTrip": "View Trip",
+      "matchingBadge": "Smart matching",
+      "matchingTitle": "Find your best match",
+      "editSearch": "Edit search",
+      "bestMatches": "Best Matches",
+      "request": "Request",
+      "safetyBadge": "Safety first",
+      "safetyTitle": "Built for safer cross-border exchanges",
+      "safetyDesc": "Items must meet platform eligibility requirements and applicable travel and customs rules. CarryLink helps you understand what can be carried — but compliance with customs law is always the responsibility of the traveler and sender.",
+      "safetyLink": "Read our safety guidelines →",
+      "safetyFeatures": [
+        {
+          "title": "Identity Verification",
+          "desc": "All travelers and senders complete ID verification before transacting."
+        },
+        {
+          "title": "Secure Payments",
+          "desc": "Payments are held in escrow and released only upon confirmed delivery."
+        },
+        {
+          "title": "Handover Verification",
+          "desc": "Digital handover codes confirm item transfer at both origin and destination."
+        },
+        {
+          "title": "Reputation System",
+          "desc": "Every completed trip builds a verified track record of reliability."
+        },
+        {
+          "title": "Item Transparency",
+          "desc": "Senders declare items, photos, and declared value before matching."
+        },
+        {
+          "title": "Dispute Support",
+          "desc": "Dedicated support team mediates disputes with full transaction records."
+        }
+      ],
+      "ctaTitle": "Carry less. Connect more.",
+      "ctaDesc": "Join thousands of travelers and senders building cross-border connections between China and Germany.",
+      "ctaPublish": "Publish a Trip",
+      "ctaFind": "Find a Traveler",
+      "tripFields": {
+        "rating": "⭐",
+        "verified": "Verified",
+        "from": "From",
+        "date": "date",
+        "capacity": "capacity"
+      },
+      "matchFields": {
+        "matchScore": "Match",
+        "route": "Route",
+        "date": "Date",
+        "capacity": "Capacity",
+        "onTime": "On-time",
+        "requestBtn": "Request",
+        "whyMatch": "Why this match?",
+        "routeMatch": "Route match",
+        "dateMatch": "Date match",
+        "trustScore": "Trust score"
+      },
+      "sidebarTitle": "Your request",
+      "sidebarFields": [
+        {
+          "label": "From",
+          "value": "Shanghai"
+        },
+        {
+          "label": "To",
+          "value": "Munich"
+        },
+        {
+          "label": "Weight",
+          "value": "2 kg"
+        },
+        {
+          "label": "Volume",
+          "value": "5 L"
+        },
+        {
+          "label": "Dates",
+          "value": "Sep 20–25"
+        }
+      ],
+      "sidebarCost": "Estimated cost range",
+      "sidebarFee": "Including platform fee",
+      "postRequest": "Post a Request"
+    }
+  },
+  "zh": {
+    "nav": {
+      "findTraveler": "寻找携带者",
+      "carryItem": "托运物品",
+      "howItWorks": "使用流程",
+      "safety": "安全保障",
+      "login": "登录",
+      "getStarted": "立即开始"
+    },
+    "footer": {
+      "platform": "平台",
+      "company": "公司",
+      "support": "客户支持",
+      "legal": "法律",
+      "platformLinks": [
+        "寻找携带者",
+        "托运物品",
+        "使用流程",
+        "安全保障",
+        "定价"
+      ],
+      "companyLinks": ["关于我们", "招聘", "联系我们"],
+      "supportLinks": ["帮助中心", "取消政策", "争议处理", "安全说明"],
+      "legalLinks": ["服务条款", "隐私政策", "携带者协议", "托运方协议"],
+      "tagline": "连接中德两地的旅行者与托运方。",
+      "rights": "© 2026 CarryLink. 保留所有权利。",
+      "route": "中国 ↔ 德国 · 点对点跨境携带平台"
+    },
+    "home": {
+      "badge": "本月 237 趟可用行程 · 中国 ↔ 德国",
+      "headline": "有人正飞往\n你的方向。",
+      "subheadline": "CarryLink 连接往返中德的旅行者与需要跨境携带小件物品的用户。",
+      "searchFrom": "出发地",
+      "searchTo": "目的地",
+      "searchDate": "日期",
+      "searchWeight": "重量",
+      "searchVolume": "体积",
+      "searchFromCountry": "出发国家",
+      "searchFromCity": "出发城市",
+      "searchToCountry": "目的国家",
+      "searchToCity": "目的城市",
+      "countryGermany": "🇩🇪 德国",
+      "countryChina": "🇨🇳 中国",
+      "findTraveler": "寻找携带者",
+      "imTraveling": "我要携带 →",
+      "germanyLabel": "德国",
+      "germanyCity": "慕尼黑、法兰克福、柏林",
+      "chinaLabel": "中国",
+      "chinaCity": "上海、北京等城市",
+      "trustTitle": "信任与安全",
+      "trust": [
+        {
+          "label": "实名认证旅行者",
+          "desc": "每位旅行者在首次出行前均需完成身份核验"
+        },
+        {
+          "label": "透明定价",
+          "desc": "确认请求前即可看到全部费用"
+        },
+        {
+          "label": "安全支付",
+          "desc": "款项由平台托管，收货确认后释放"
+        },
+        {
+          "label": "交接核验",
+          "desc": "数字验证码确认每次物品转交"
+        }
+      ],
+      "howBadge": "简单流程",
+      "howTitle": "CarryLink 如何运作",
+      "steps": [
+        {
+          "title": "发布行程或请求",
+          "desc": "旅行者发布即将出发的航班信息；托运方发布需携带的物品信息，包括照片、重量和申报价值。"
+        },
+        {
+          "title": "智能匹配",
+          "desc": "CarryLink 根据路线、日期、可用容量和实名认证用户进行匹配，并显示匹配评分、评价及旅行者历史记录。"
+        },
+        {
+          "title": "见面交接与送达",
+          "desc": "通过数字验证码确认交接，旅行者抵达后双方确认收货，款项自动释放。"
+        }
+      ],
+      "forTravelersBadge": "旅行者",
+      "forTravelersTitle": "你闲置的行李空间也能创造价值。",
+      "forTravelersDesc": "正在往返中德之间？携带合规小件物品，利用闲置容量轻松赚取收益。",
+      "forTravelersAvg": "平均每趟赚取 €180",
+      "forTravelersCapacity": "可携带 2–8 kg",
+      "publishTrip": "发布行程 →",
+      "forSendersBadge": "托运方",
+      "forSendersTitle": "让正在飞行的人帮你带件小东西。",
+      "forSendersDesc": "找到前往目的地的认证旅行者，请求携带小件物品，比货运更快、更贴心。",
+      "forSendersAvg": "平均 5–7 天送达",
+      "forSendersPrice": "每公斤低至 €20，全包价",
+      "createRequest": "发布托运请求 →",
+      "marketplaceBadge": "实时市场",
+      "marketplaceTitle": "热门近期行程",
+      "viewAll": "查看全部行程 →",
+      "viewTrip": "查看行程",
+      "matchingBadge": "智能匹配",
+      "matchingTitle": "找到最适合你的旅行者",
+      "editSearch": "修改搜索",
+      "bestMatches": "最佳匹配",
+      "request": "请求携带",
+      "safetyBadge": "安全第一",
+      "safetyTitle": "为更安全的跨境交换而生",
+      "safetyDesc": "物品须符合平台资质要求及相关旅行与海关规定。CarryLink 帮助你了解可携带的物品范围，但遵守海关法规的责任始终由旅行者和托运方自行承担。",
+      "safetyLink": "查看安全说明 →",
+      "safetyFeatures": [
+        {
+          "title": "身份核验",
+          "desc": "所有旅行者和托运方在首次交易前均须完成身份认证。"
+        },
+        {
+          "title": "安全支付",
+          "desc": "款项由平台托管，仅在确认收货后释放。"
+        },
+        {
+          "title": "数字交接验证",
+          "desc": "数字验证码确认每次物品在出发地和目的地的转交。"
+        },
+        {
+          "title": "信用评价系统",
+          "desc": "每次完成的行程都将积累可验证的信用记录。"
+        },
+        {
+          "title": "物品透明申报",
+          "desc": "托运方须在匹配前申报物品信息、照片及申报价值。"
+        },
+        {
+          "title": "争议支持",
+          "desc": "专属客服团队依据完整交易记录调解纠纷。"
+        }
+      ],
+      "ctaTitle": "少带行李，多建连接。",
+      "ctaDesc": "加入数千名在中德之间建立跨境联系的旅行者与托运方。",
+      "ctaPublish": "发布行程",
+      "ctaFind": "寻找携带者",
+      "tripFields": {
+        "rating": "⭐",
+        "verified": "已认证",
+        "from": "起价",
+        "date": "日期",
+        "capacity": "容量"
+      },
+      "matchFields": {
+        "matchScore": "匹配度",
+        "route": "路线",
+        "date": "日期",
+        "capacity": "可用容量",
+        "onTime": "准时率",
+        "requestBtn": "请求",
+        "whyMatch": "为什么是这个匹配？",
+        "routeMatch": "路线匹配",
+        "dateMatch": "日期匹配",
+        "trustScore": "信任评分"
+      },
+      "sidebarTitle": "你的请求",
+      "sidebarFields": [
+        {
+          "label": "出发地",
+          "value": "上海"
+        },
+        {
+          "label": "目的地",
+          "value": "2026年9月20日"
+        },
+        {
+          "label": "物品",
+          "value": "护肤品（已申报）"
+        },
+        {
+          "label": "重量",
+          "value": "1.2 kg"
+        },
+        {
+          "label": "申报价值",
+          "value": "€85"
+        },
+        {
+          "label": "费用",
+          "value": "€38（€25/kg + €13 平台服务费）"
+        }
+      ],
+      "handoverTitle": "交接验证码",
+      "handoverNotice": "当面交接时将此验证码告知旅行者，请勿提前分享。",
+      "paymentTitle": "付款信息",
+      "paymentStatus": "✓ 已付款并托管",
+      "paymentStatusLabel": "状态",
+      "paymentAmountLabel": "金额",
+      "paymentAmount": "€38.00",
+      "paymentReleaseLabel": "款项释放时间",
+      "paymentRelease": "收货确认后释放给旅行者",
+      "travelerRole": "旅行者",
+      "senderRole": "托运方（你）",
+      "reportIssue": "举报问题",
+      "messagePlaceholder": "输入消息...",
+      "sendBtn": "发送",
+      "messages": [
+        {
+          "from": "them",
+          "text": "你好！我已确认你的请求。9月20日早上8点在慕尼黑机场2号航站楼见面？",
+          "time": "9月15日 11:10"
+        },
+        {
+          "from": "me",
+          "text": "好的，我会到的！需要用原包装带来吗？",
+          "time": "9月15日 11:24"
+        },
+        {
+          "from": "them",
+          "text": "是的，麻烦带上原包装，还有交接验证码。我会在分开前在App里核验。",
+          "time": "9月15日 11:31"
+        },
+        {
+          "from": "me",
+          "text": "明白了，谢谢！",
+          "time": "9月15日 11:35"
+        },
+        {
+          "from": "them",
+          "text": "正在慕尼黑机场登机，40分钟后起飞，落地后会更新你。",
+          "time": "9月20日 08:45"
+        }
+      ]
+    }
+  },
+  "de": {
+    "nav": {
+      "findTraveler": "Reisenden finden",
+      "carryItem": "Artikel mitbringen",
+      "howItWorks": "So funktioniert's",
+      "safety": "Sicherheit",
+      "login": "Anmelden",
+      "getStarted": "Loslegen"
+    },
+    "footer": {
+      "platform": "Plattform",
+      "company": "Unternehmen",
+      "support": "Support",
+      "legal": "Rechtliches",
+      "platformLinks": [
+        "Reisenden finden",
+        "Artikel mitbringen",
+        "So funktioniert's",
+        "Sicherheit",
+        "Preise"
+      ],
+      "companyLinks": ["Über uns", "Karriere", "Kontakt"],
+      "supportLinks": [
+        "Hilfe-Center",
+        "Stornierung",
+        "Streitbeilegung",
+        "Sicherheit"
+      ],
+      "legalLinks": [
+        "AGB",
+        "Datenschutz",
+        "Reisende-Vereinbarung",
+        "Absender-Vereinbarung"
+      ],
+      "tagline": "Verbindet Reisende und Absender zwischen China und Deutschland.",
+      "rights": "© 2026 CarryLink. Alle Rechte vorbehalten.",
+      "route": "China ↔ Deutschland · Peer-to-peer Transportmarktplatz"
+    },
+    "home": {
+      "badge": "237 Trips verfügbar diesen Monat · China ↔ Deutschland",
+      "headline": "Jemand fliegt\nin deine Richtung.",
+      "subheadline": "CarryLink verbindet Reisende zwischen China und Deutschland mit Personen, die kleine Artikel über die Grenze transportieren möchten.",
+      "searchFrom": "Von",
+      "searchTo": "Nach",
+      "searchDate": "Datum",
+      "searchWeight": "Gewicht",
+      "searchVolume": "Volumen",
+      "searchFromCountry": "Abflugland",
+      "searchFromCity": "Abflugstadt",
+      "searchToCountry": "Zielland",
+      "searchToCity": "Zielstadt",
+      "countryGermany": "🇩🇪 Deutschland",
+      "countryChina": "🇨🇳 China",
+      "findTraveler": "Reisenden finden",
+      "imTraveling": "Ich reise →",
+      "germanyLabel": "Deutschland",
+      "germanyCity": "München, Frankfurt, Berlin",
+      "chinaLabel": "China",
+      "chinaCity": "Shanghai, Peking u.v.m.",
+      "trustTitle": "Vertrauen & Sicherheit",
+      "trust": [
+        {
+          "label": "Verifizierte Reisende",
+          "desc": "Jeder Reisende wird vor der ersten Fahrt ID-verifiziert"
+        },
+        {
+          "label": "Transparente Preise",
+          "desc": "Vollständigen Preis vor Bestätigung einsehen"
+        },
+        {
+          "label": "Sichere Zahlung",
+          "desc": "Treuhänderisch gehaltene Zahlungen, Freigabe bei Lieferung"
+        },
+        {
+          "label": "Übergabe-Verifizierung",
+          "desc": "Digitale Codes bestätigen jede Übergabe"
+        }
+      ],
+      "howBadge": "Einfacher Prozess",
+      "howTitle": "So funktioniert CarryLink",
+      "steps": [
+        {
+          "title": "Trip oder Anfrage erstellen",
+          "desc": "Reisende veröffentlichen ihren bevorstehenden Flug. Absender veröffentlichen, was sie transportieren möchten – mit Fotos, Gewicht und deklariertem Wert."
+        },
+        {
+          "title": "Matching erhalten",
+          "desc": "CarryLink findet passende Routen, Daten, Kapazitäten und verifizierte Nutzer. Du siehst eine Match-Bewertung, Rezensionen und die vollständige Reisenden-Historie."
+        },
+        {
+          "title": "Treffen und liefern",
+          "desc": "Übergabe mit digitalem Code bestätigen, reisen und Lieferung bestätigen. Die Zahlung wird automatisch freigegeben, sobald beide Seiten bestätigt haben."
+        }
+      ],
+      "forTravelersBadge": "Für Reisende",
+      "forTravelersTitle": "Dein ungenutzter Gepäckraum kann nützlich sein.",
+      "forTravelersDesc": "Reist du bereits zwischen China und Deutschland? Transportiere kleine zulässige Artikel und verdiene Geld mit deiner verfügbaren Kapazität.",
+      "forTravelersAvg": "Ø €180 pro Trip verdient",
+      "forTravelersCapacity": "Ab 2–8 kg Kapazität",
+      "publishTrip": "Trip veröffentlichen →",
+      "forSendersBadge": "Für Absender",
+      "forSendersTitle": "Sende kleine Artikel mit jemandem, der bereits fliegt.",
+      "forSendersDesc": "Finde einen verifizierten Reisenden auf deiner Route und bitte um den Transport eines kleinen Artikels. Schneller und persönlicher als Frachtversand.",
+      "forSendersAvg": "Ø 5–7 Tage Lieferzeit",
+      "forSendersPrice": "Ab €20/kg, alles inklusive",
+      "createRequest": "Anfrage erstellen →",
+      "marketplaceBadge": "Live-Marktplatz",
+      "marketplaceTitle": "Beliebte bevorstehende Trips",
+      "viewAll": "Alle Trips anzeigen →",
+      "viewTrip": "Trip ansehen",
+      "matchingBadge": "Intelligentes Matching",
+      "matchingTitle": "Finde dein bestes Match",
+      "editSearch": "Suche bearbeiten",
+      "bestMatches": "Beste Treffer",
+      "request": "Anfragen",
+      "safetyBadge": "Sicherheit zuerst",
+      "safetyTitle": "Für sicherere grenzüberschreitende Transporte gebaut",
+      "safetyDesc": "Artikel müssen die Plattform-Zulassungsanforderungen sowie geltende Reise- und Zollbestimmungen erfüllen. CarryLink hilft dir zu verstehen, was transportiert werden darf – die Einhaltung der Zollgesetze liegt jedoch stets in der Verantwortung von Reisendem und Absender.",
+      "safetyLink": "Sicherheitsrichtlinien lesen →",
+      "safetyFeatures": [
+        {
+          "title": "Identitätsverifizierung",
+          "desc": "Alle Reisenden und Absender schließen eine ID-Verifizierung ab, bevor sie handeln."
+        },
+        {
+          "title": "Sichere Zahlung",
+          "desc": "Zahlungen werden treuhänderisch gehalten und nur bei bestätigter Lieferung freigegeben."
+        },
+        {
+          "title": "Übergabe-Verifizierung",
+          "desc": "Digitale Übergabecodes bestätigen Artikelübergaben an Ursprung und Ziel."
+        },
+        {
+          "title": "Reputationssystem",
+          "desc": "Jeder abgeschlossene Trip baut eine verifizierte Vertrauenshistorie auf."
+        },
+        {
+          "title": "Artikel-Transparenz",
+          "desc": "Absender deklarieren Artikel, Fotos und deklarierten Wert vor dem Matching."
+        },
+        {
+          "title": "Streitbeilegung",
+          "desc": "Unser Support-Team vermittelt bei Streitigkeiten mit vollständigen Transaktionsnachweisen."
+        }
+      ],
+      "ctaTitle": "Weniger Gepäck. Mehr Verbindungen.",
+      "ctaDesc": "Schließe dich tausenden Reisenden und Absendern an, die grenzüberschreitende Verbindungen zwischen China und Deutschland aufbauen.",
+      "ctaPublish": "Trip veröffentlichen",
+      "ctaFind": "Reisenden finden",
+      "tripFields": {
+        "rating": "⭐",
+        "verified": "Verifiziert",
+        "from": "Ab",
+        "date": "Datum",
+        "capacity": "Kapazität"
+      },
+      "matchFields": {
+        "matchScore": "Match",
+        "route": "Route",
+        "date": "Datum",
+        "capacity": "Verfügbar",
+        "onTime": "Pünktlichkeit",
+        "requestBtn": "Anfragen",
+        "whyMatch": "Warum dieses Match?",
+        "routeMatch": "Routenübereinstimmung",
+        "dateMatch": "Datumsübereinstimmung",
+        "trustScore": "Vertrauens-Score"
+      },
+      "sidebarTitle": "Deine Anfrage",
+      "sidebarFields": [
+        {
+          "label": "Von",
+          "value": "Shanghai"
+        },
+        {
+          "label": "Nach",
+          "value": "München"
+        },
+        {
+          "label": "Gewicht",
+          "value": "2 kg"
+        },
+        {
+          "label": "Volumen",
+          "value": "5 L"
+        },
+        {
+          "label": "Daten",
+          "value": "20.–25. Sep"
+        }
+      ],
+      "sidebarCost": "Geschätzte Kostenspanne",
+      "sidebarFee": "Inkl. Plattformgebühr",
+      "postRequest": "Anfrage veröffentlichen"
+    }
+  }
+}

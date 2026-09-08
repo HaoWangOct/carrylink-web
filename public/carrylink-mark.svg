@@ -1,0 +1,19 @@
+<svg
+        width="96"
+        height="62"
+        viewBox="0 0 96 62"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="CarryLink icon"
+      >
+        
+        <path
+          d="M3 57 L14 4 L50 4 L40 28 L50 57 Z"
+          fill="#fc5000"
+        />
+        
+        <path
+          d="M60 4 L83 4 L73 53 L48 28 Z"
+          fill="#fc5000"
+        />
+      </svg>
