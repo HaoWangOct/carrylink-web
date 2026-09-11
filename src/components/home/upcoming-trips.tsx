@@ -1,10 +1,13 @@
-import { sampleTrips, type Trip } from "@/content/sample-trips";
+import Link from "next/link";
+import { useMock } from "@/mock/provider";
+import { type Trip } from "@/content/sample-trips";
 import { useLanguage } from "../language-provider";
 import { SectionHeading } from "../ui/section-heading";
 import { TripCard } from "./trip-card";
 
 export function UpcomingTrips({ onView }: { onView: (trip: Trip) => void }) {
   const { t, ui } = useLanguage();
+  const { trips } = useMock();
   return (
     <section
       id="trips"
@@ -18,13 +21,13 @@ export function UpcomingTrips({ onView }: { onView: (trip: Trip) => void }) {
             eyebrow={t.home.marketplaceBadge}
             title={t.home.marketplaceTitle}
           />
-          <a href="#matching" className="text-link">
+          <Link href="/matches" className="text-link">
             {t.home.viewAll}
-          </a>
+          </Link>
         </div>
         <p className="mb-4 text-xs text-muted">{ui.sample}</p>
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {sampleTrips.map((trip) => (
+          {trips.filter(trip => trip.status === "published").map((trip) => (
             <TripCard key={trip.id} trip={trip} onView={onView} />
           ))}
         </div>

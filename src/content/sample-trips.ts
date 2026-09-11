@@ -14,7 +14,6 @@ export interface Trip {
   capacity: number;
   price: number;
   color: string;
-  score: number;
 }
 
 // Illustrative marketplace records; no live inventory or matching service.
@@ -31,7 +30,6 @@ export const sampleTrips: Trip[] = [
     capacity: 8,
     price: 25,
     color: "#fc5000",
-    score: 94,
   },
   {
     id: "emma",
@@ -45,7 +43,6 @@ export const sampleTrips: Trip[] = [
     capacity: 5,
     price: 22,
     color: "#070607",
-    score: 89,
   },
   {
     id: "daniel",
@@ -59,7 +56,6 @@ export const sampleTrips: Trip[] = [
     capacity: 10,
     price: 28,
     color: "#a0a0a0",
-    score: 86,
   },
   {
     id: "li",
@@ -73,12 +69,8 @@ export const sampleTrips: Trip[] = [
     capacity: 6,
     price: 20,
     color: "#5a5a5a",
-    score: 78,
   },
 ];
-export const sampleMatches = sampleTrips
-  .slice(0, 3)
-  .map((trip) => ({ ...trip, to: "shanghai" as const }));
 
 export const initialSearch: SearchValues = {
   fromCountry: "DE",

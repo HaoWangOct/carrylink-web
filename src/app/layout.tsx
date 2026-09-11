@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { LanguageProvider } from "@/components/language-provider";
+import { MockProvider } from "@/mock/provider";
 
 const inter = localFont({
   src: "./fonts/inter-latin.woff2",
@@ -21,7 +23,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={inter.variable}>{children}</body>
+      <body className={inter.variable}><LanguageProvider><MockProvider>{children}</MockProvider></LanguageProvider></body>
     </html>
   );
 }
