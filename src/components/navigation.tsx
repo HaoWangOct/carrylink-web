@@ -1,10 +1,10 @@
 "use client";
 import Link from "next/link";
+import { authCopy } from "@/content/auth-copy";
 
 import { useEffect, useRef, useState } from "react";
 import { BrandLogo } from "./brand-logo";
 import { useLanguage } from "./language-provider";
-import { Button } from "./ui/button";
 
 export function Navigation({
   onAccount,
@@ -14,6 +14,7 @@ export function Navigation({
   onTraveler: () => void;
 }) {
   const { lang, setLang, t, ui } = useLanguage();
+  const accountCopy = authCopy(lang);
   const [open, setOpen] = useState(false);
   const [languagesOpen, setLanguagesOpen] = useState(false);
   const languageRef = useRef<HTMLDivElement>(null);
@@ -77,6 +78,8 @@ export function Navigation({
         <Link href="/#safety" className={cls} onClick={() => setOpen(false)}>
           {t.nav.safety}
         </Link>
+        <Link href="/login" className={cls} onClick={() => setOpen(false)}>{accountCopy.login}</Link>
+        {mobile && <Link href="/signup" className={cls} onClick={() => setOpen(false)}>{accountCopy.signupLink}</Link>}
         {mobile && (
           <button
             className={cls}
@@ -177,9 +180,9 @@ export function Navigation({
               {t.nav.login}
             </button>
             <div className="hidden sm:block">
-              <Button onClick={onAccount} className="px-5 py-2.5 font-semibold">
+              <Link href="/signup" className="inline-flex min-h-11 items-center rounded-xl bg-orange px-5 py-2.5 text-sm font-semibold text-white hover:bg-orange-hover">
                 {t.nav.getStarted}
-              </Button>
+              </Link>
             </div>
             <button
               ref={menuButton}
