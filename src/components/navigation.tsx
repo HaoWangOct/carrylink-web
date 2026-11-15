@@ -1,9 +1,10 @@
 "use client";
+import Link from "next/link";
+import { authCopy } from "@/content/auth-copy";
 
 import { useEffect, useRef, useState } from "react";
 import { BrandLogo } from "./brand-logo";
 import { useLanguage } from "./language-provider";
-import { Button } from "./ui/button";
 
 export function Navigation({
   onAccount,
@@ -13,6 +14,7 @@ export function Navigation({
   onTraveler: () => void;
 }) {
   const { lang, setLang, t, ui } = useLanguage();
+  const accountCopy = authCopy(lang);
   const [open, setOpen] = useState(false);
   const [languagesOpen, setLanguagesOpen] = useState(false);
   const languageRef = useRef<HTMLDivElement>(null);
@@ -58,9 +60,9 @@ export function Navigation({
       "rounded-full px-4 py-2 text-sm font-medium text-body transition-colors hover:bg-surface hover:text-ink";
     return (
       <>
-        <a href="#matching" className={cls} onClick={() => setOpen(false)}>
+        <Link href="/matches" className={cls} onClick={() => setOpen(false)}>
           {t.nav.findTraveler}
-        </a>
+        </Link>
         <button
           className={cls}
           onClick={() => {
@@ -70,12 +72,14 @@ export function Navigation({
         >
           {t.nav.carryItem}
         </button>
-        <a href="#how-it-works" className={cls} onClick={() => setOpen(false)}>
+        <Link href="/#how-it-works" className={cls} onClick={() => setOpen(false)}>
           {t.nav.howItWorks}
-        </a>
-        <a href="#safety" className={cls} onClick={() => setOpen(false)}>
+        </Link>
+        <Link href="/#safety" className={cls} onClick={() => setOpen(false)}>
           {t.nav.safety}
-        </a>
+        </Link>
+        <Link href="/login" className={cls} onClick={() => setOpen(false)}>{accountCopy.login}</Link>
+        {mobile && <Link href="/signup" className={cls} onClick={() => setOpen(false)}>{accountCopy.signupLink}</Link>}
         {mobile && (
           <button
             className={cls}
@@ -92,17 +96,17 @@ export function Navigation({
   }
   return (
     <>
-      <a
+      <Link
         href="#main"
         className="fixed top-2 left-2 z-[100] -translate-y-24 rounded-xl bg-ink px-5 py-3 text-white focus:translate-y-0"
       >
         {ui.skip}
-      </a>
+      </Link>
       <header className="fixed inset-x-0 top-0 z-50 h-16 border-b border-soft-line bg-white/95 backdrop-blur-sm">
         <div className="container-page flex h-full items-center justify-between gap-3">
-          <a href="#" aria-label="CarryLink" className="shrink-0">
+          <Link href="/" aria-label="CarryLink" className="shrink-0">
             <BrandLogo />
-          </a>
+          </Link>
           <nav
             aria-label="Main"
             className="hidden flex-1 items-center justify-center xl:flex"
@@ -176,9 +180,9 @@ export function Navigation({
               {t.nav.login}
             </button>
             <div className="hidden sm:block">
-              <Button onClick={onAccount} className="px-5 py-2.5 font-semibold">
+              <Link href="/signup" className="inline-flex min-h-11 items-center rounded-xl bg-orange px-5 py-2.5 text-sm font-semibold text-white hover:bg-orange-hover">
                 {t.nav.getStarted}
-              </Button>
+              </Link>
             </div>
             <button
               ref={menuButton}

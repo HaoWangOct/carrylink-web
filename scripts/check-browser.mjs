@@ -1,208 +1,46 @@
-import { chromium } from "playwright-core";
-import assert from "node:assert/strict";
-import { mkdir, writeFile } from "node:fs/promises";
-import { existsSync } from "node:fs";
-
-const executablePath =
-  process.env.CHROME_PATH ||
-  [
-    "C:/Program Files/Google/Chrome/Application/chrome.exe",
-    "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
-    "/usr/bin/google-chrome",
-    "/usr/bin/chromium",
-  ].find((path) => existsSync(path));
-if (!executablePath)
-  throw new Error("Set CHROME_PATH to an installed Chrome/Chromium browser.");
-const baseUrl = process.env.BASE_URL || "http://127.0.0.1:3000";
-await mkdir("artifacts", { recursive: true });
-const browser = await chromium.launch({ executablePath, headless: true });
-const results = [];
-const runtimeErrors = [];
-const requests = [];
+import { chromium } from 'playwright-core';
+import assert from 'node:assert/strict';
+import { mkdir, writeFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
+const executablePath = process.env.CHROME_PATH || ['/Applications/Google Chrome.app/Contents/MacOS/Google Chrome','C:/Program Files/Google/Chrome/Application/chrome.exe','/usr/bin/google-chrome','/usr/bin/chromium'].find(existsSync);
+if (!executablePath) throw new Error('Set CHROME_PATH to an installed browser.');
+const baseUrl = process.env.BASE_URL || 'http://127.0.0.1:3000';
+await mkdir('artifacts',{recursive:true});
+const browser = await chromium.launch({executablePath,headless:true});
+const results=[], errors=[], requests=[];
 try {
-  const page = await browser.newPage({
-    viewport: { width: 1440, height: 1000 },
-    reducedMotion: "reduce",
-  });
-  page.on("pageerror", (error) => runtimeErrors.push(error.message));
-  page.on("console", (message) => {
-    if (message.type() === "error") runtimeErrors.push(message.text());
-  });
-  page.on("request", (request) =>
-    requests.push({ url: request.url(), method: request.method() }),
-  );
-  const response = await page.goto(baseUrl, { waitUntil: "networkidle" });
-  assert.equal(response.status(), 200);
-  await page.evaluate(() => document.fonts.ready);
-  assert.equal(await page.locator("h1").count(), 1);
-  assert.equal(await page.locator("main").count(), 1);
-  assert.equal(await page.locator("#trips article").count(), 4);
-  assert.equal(await page.locator("#matching article").count(), 3);
-  assert.equal(await page.locator("main section").count(), 8);
-  assert.equal(
-    await page
-      .locator('input:not([type="hidden"]), select')
-      .evaluateAll((elements) =>
-        elements.every((element) => element.labels?.length),
-      ),
-    true,
-  );
-  assert.equal(
-    await page
-      .locator("img")
-      .evaluateAll((images) =>
-        images.every((img) => img.complete && img.naturalWidth > 0),
-      ),
-    true,
-  );
-  results.push(
-    "HTTP 200; semantic landmarks, eight sections, four trips, three matches, associated labels and loaded logo",
-  );
-
-  for (const [name, width, height] of [
-    ["desktop", 1440, 1000],
-    ["tablet", 768, 1024],
-    ["mobile", 390, 844],
-    ["small-mobile", 320, 800],
-  ]) {
-    await page.setViewportSize({ width, height });
-    await page.evaluate(() => window.scrollTo(0, 0));
-    const overflow = await page.evaluate(
-      () => document.documentElement.scrollWidth > window.innerWidth,
-    );
-    assert.equal(overflow, false, `${name}: horizontal overflow`);
-    await page.screenshot({ path: `artifacts/${name}.png`, fullPage: true });
-    await page.screenshot({ path: `artifacts/${name}-viewport.png` });
-    results.push(
-      `${name} ${width}×${height}: no horizontal overflow; screenshot saved`,
-    );
-  }
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.getByRole("button", { name: "Menu", exact: true }).click();
-  await page
-    .locator("#mobile-navigation")
-    .getByRole("link", { name: "How It Works", exact: true })
-    .click();
-  assert.equal(await page.locator("#mobile-navigation").count(), 0);
-  assert.match(page.url(), /#how-it-works$/);
-  results.push("Mobile navigation opens, follows in-page links and closes");
-
-  for (const [button, choice, expected, code, file] of [
-    ["Language", "中文 Chinese", "有人正飞往", "zh", "mobile-zh"],
-    ["语言", "Deutsch German", "Jemand", "de", "mobile-de"],
-    ["Sprache", "English English", "Someone", "en", "mobile-en"],
-  ]) {
-    await page.getByRole("button", { name: button, exact: true }).click();
-    await page
-      .locator("#language-options")
-      .getByRole("button", { name: choice })
-      .click();
-    await page.waitForFunction(
-      (text) => document.querySelector("h1")?.textContent.includes(text),
-      expected,
-    );
-    assert.equal(await page.locator("html").getAttribute("lang"), code);
-    assert.ok(
-      (await page.locator("h1").innerText()).includes(expected),
-      `Unexpected ${code} headline`,
-    );
-    assert.equal(
-      await page.evaluate(
-        () => document.documentElement.scrollWidth > innerWidth,
-      ),
-      false,
-    );
-    await page.evaluate(() => window.scrollTo(0, 0));
-    await page.screenshot({ path: `artifacts/${file}.png`, fullPage: true });
-  }
-  results.push(
-    "English, Chinese and German switching updates copy and document language without overflow",
-  );
-
-  await page.locator("#from-country").selectOption("CN");
-  assert.equal(await page.locator("#from-city").inputValue(), "shanghai");
-  await page
-    .locator("#route-search")
-    .getByRole("button", { name: "Find a Traveler", exact: true })
-    .click();
-  assert.equal(
-    await page.locator("#route-error").innerText(),
-    "Choose a route between Germany and China.",
-  );
-  await page.locator("#from-country").selectOption("DE");
-  await page.locator("#from-city").selectOption("berlin");
-  await page.locator("#trip-weight").fill("3.5");
-  await page.locator("#trip-volume").fill("6");
-  await page
-    .locator("#route-search")
-    .getByRole("button", { name: "Find a Traveler", exact: true })
-    .click();
-  assert.ok((await page.locator("#matching").innerText()).includes("3.5 kg"));
-  assert.ok((await page.locator("#matching").innerText()).includes("Berlin"));
-  assert.equal(
-    await page
-      .locator("#matching-heading")
-      .evaluate((el) => el === document.activeElement),
-    true,
-  );
-  assert.equal(await page.locator("#matching article").count(), 3);
-  results.push(
-    "Dependent cities, invalid-route validation, submitted request summary and focus movement; sample data remains illustrative",
-  );
-
-  const tripButton = page.getByRole("button", {
-    name: "View Trip: Alex M.",
-    exact: true,
-  });
-  await tripButton.click();
-  assert.equal(await page.getByRole("dialog").isVisible(), true);
-  assert.ok((await page.getByRole("dialog").innerText()).includes("Alex M."));
-  await page.keyboard.press("Tab");
-  await page.locator("#from-city").evaluate((element) => element.focus());
-  assert.equal(
-    await page
-      .getByRole("dialog")
-      .evaluate((el) => el.contains(document.activeElement)),
-    true,
-  );
-  await page.screenshot({ path: "artifacts/trip-dialog.png" });
-  await page.keyboard.press("Escape");
-  assert.equal(await page.getByRole("dialog").count(), 0);
-  assert.equal(
-    await tripButton.evaluate((el) => el === document.activeElement),
-    true,
-  );
-  results.push(
-    "Trip preview: native modal focus containment, Escape dismissal and restored trigger focus",
-  );
-
-  await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.getByRole("button", { name: "Get Started", exact: true }).click();
-  assert.ok(
-    (await page.getByRole("dialog").innerText()).includes(
-      "Accounts are coming soon",
-    ),
-  );
-  await page
-    .getByRole("dialog")
-    .getByRole("button", { name: "Close", exact: true })
-    .last()
-    .click();
-  assert.equal(
-    requests.some(
-      (request) => request.method === "POST" || request.url.includes("/api/"),
-    ),
-    false,
-  );
-  assert.deepEqual(runtimeErrors, []);
-  results.push(
-    "Account preview only; no API calls, mutations, hydration errors or browser console errors",
-  );
-  await writeFile(
-    "artifacts/browser-results.json",
-    JSON.stringify({ baseUrl, results, runtimeErrors }, null, 2),
-  );
-  console.log(JSON.stringify({ passed: results.length, results }, null, 2));
-} finally {
-  await browser.close();
-}
+ const page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
+ page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error') errors.push(m.text());});page.on('request',r=>requests.push({url:r.url(),method:r.method()}));
+ const click=async name=>page.getByRole('button',{name,exact:true}).click();
+ const link=async name=>page.getByRole('link',{name,exact:true}).first().click();
+ const heading=async text=>page.getByRole('heading',{level:1,name:text,exact:true}).waitFor();
+ const overflow=async label=>{assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,label);};
+ const responsive=async label=>{for(const [name,width,height] of [['desktop',1440,1000],['tablet',768,1024],['mobile',390,844]]){await page.setViewportSize({width,height});await overflow(`${label}-${name}`);await page.screenshot({path:`artifacts/${label}-${name}.png`,fullPage:true});}};
+ const next=async()=>click('Next');
+ const language=async(button,choice)=>{await click(button);await page.locator('#language-options').getByRole('button',{name:choice}).click();};
+ assert.equal((await page.goto(baseUrl)).status(),200);await page.locator('#route-search').waitFor();
+ assert.equal(await page.locator('h1').count(),1);assert.equal(await page.locator('#trips article').count(),4);assert.equal(await page.locator('#matching article').count(),2);
+ for(const [name,width,height] of [['desktop',1440,1000],['tablet',768,1024],['mobile',390,844],['small-mobile',320,800]]){await page.setViewportSize({width,height});await overflow(name);await page.screenshot({path:`artifacts/${name}.png`,fullPage:true});}
+ results.push('Home landmarks and real fixture results; desktop/tablet/mobile/320px no overflow.');
+ await page.setViewportSize({width:390,height:844});await click('Menu');await page.locator('#mobile-navigation').getByRole('link',{name:'How It Works',exact:true}).click();assert.equal(await page.locator('#mobile-navigation').count(),0);await page.waitForURL('**/#how-it-works');
+ await language('Language','中文 Chinese');assert.equal(await page.locator('html').getAttribute('lang'),'zh');await language('语言','Deutsch German');await overflow('German home');await language('Sprache','English English');
+ const safety=page.getByRole('button',{name:'About this demo →',exact:true});await safety.click();const dialog=page.getByRole('dialog');await dialog.waitFor();await page.locator('#from-city').evaluate(el=>el.focus());assert.equal(await dialog.evaluate(el=>el.contains(document.activeElement)),true);await page.keyboard.press('Escape');assert.equal(await dialog.count(),0);assert.equal(await safety.evaluate(el=>el===document.activeElement),true);
+ await safety.click();await dialog.getByRole('button',{name:'Close',exact:true}).last().click();assert.equal(await dialog.count(),0);
+ results.push('Mobile navigation, EN/ZH/DE, dialog focus containment, Escape/close and focus restoration.');
+ await page.locator('#from-country').selectOption('CN');assert.equal(await page.locator('#from-city').inputValue(),'shanghai');await page.locator('#route-search').getByRole('button',{name:'Find a Traveler',exact:true}).click();assert.equal(await page.locator('#route-error').count(),1);
+ await page.locator('#from-country').selectOption('DE');await page.locator('#route-search').getByRole('button',{name:'Find a Traveler',exact:true}).click();await heading('Match results');assert.match(page.url(),/fromCity=munich/);assert.equal(await page.locator('main article').count(),2);await page.getByText('Why this matches',{exact:true}).first().click();await page.locator('#sort').selectOption('capacity');await page.waitForFunction(()=>document.querySelector('main article')?.textContent.includes('Daniel K.'));assert.ok((await page.locator('main article').first().innerText()).includes('Daniel K.'));
+ await page.goBack();await page.locator('#route-search').waitFor();await page.locator('#trip-weight').fill('30');await page.locator('#route-search').getByRole('button',{name:'Find a Traveler',exact:true}).click();await heading('Match results');await page.getByText('No compatible results.',{exact:false}).waitFor();
+ results.push('Dependent city and route validation; shareable search, deterministic sort, reasons, empty results and browser Back.');
+ await page.getByRole('link',{name:'CarryLink',exact:true}).click();await page.getByRole('button',{name:"I'm Traveling →",exact:true}).click();await heading('Traveler dashboard');await link('Create Trip');await heading('Create Trip');await responsive('trip-route');await page.locator('#arrival').fill('2026-09-19');await next();assert.equal(await page.locator('#form-error').count(),1);await page.locator('#arrival').fill('2026-09-25');await next();await next();assert.equal(await page.locator('#form-error').count(),1);await page.locator('#weight').fill('8');await page.locator('#volume').fill('25');await responsive('trip-capacity');await click('Previous');assert.equal(await page.locator('#arrival').inputValue(),'2026-09-25');await next();assert.equal(await page.locator('#weight').inputValue(),'8');await next();await overflow('mobile review');await click('Publish demo trip');await heading('Traveler dashboard');await page.getByText('Trip saved in this demo.',{exact:true}).waitFor();await click('Pause');await page.getByText('Paused',{exact:true}).waitFor();await click('Resume');await link('Edit');await heading('Edit');await next();await page.locator('#weight').fill('9');await next();await click('Save changes');await heading('Traveler dashboard');await link('Find matches');await heading('Match results');assert.equal(await page.locator('main article').count(),1);await page.locator('main article').getByRole('link',{name:'Review match',exact:true}).click();await heading('Review demo order');await responsive('order-review');assert.equal(await page.getByRole('button',{name:'Create demo order',exact:true}).isEnabled(),false);await page.getByRole('checkbox').check();await click('Create demo order');await page.waitForURL(url=>/\/orders\/(?!review)[^/]+$/.test(url.pathname));await heading('Demo order created');await link('Back to dashboard');await heading('Traveler dashboard');assert.equal(await page.getByRole('button',{name:'Pause',exact:true}).isEnabled(),false);
+ results.push('Traveler → validated multi-step trip → previous/review/publish → pause/resume/edit → matching request → confirmed demo order; locked snapshot.');
+ await page.getByRole('link',{name:'CarryLink',exact:true}).click();await link('Create a Request →');await heading('Create Request');await responsive('sender-route');await page.locator('#arrival').fill('2026-09-25');await next();await next();assert.equal(await page.locator('#form-error').count(),1);await page.locator('#item').fill('Books');await page.locator('#area').fill('Shanghai centre');await responsive('sender-details');for(const [id,value] of [['weight','2'],['volume','5'],['length','20'],['width','20'],['height','10']]) await page.locator(`#${id}`).fill(value);
+ await link('Back to dashboard');await link('Create Request');await next();assert.equal(await page.locator('#item').inputValue(),'Books');await next();await click('Submit demo request');await heading('Match results');assert.equal(await page.locator('main article').count(),2);await page.locator('main article').first().getByRole('link',{name:'Review match',exact:true}).click();await heading('Review demo order');await link('Previous');await heading('Match results');await page.locator('main article').first().getByRole('link',{name:'Review match',exact:true}).click();await page.getByRole('checkbox').check();await click('Create demo order');await page.waitForURL(url=>/\/orders\/(?!review)[^/]+$/.test(url.pathname));await heading('Demo order created');assert.ok((await page.locator('main').innerText()).includes('Books'));const orderUrl=page.url();
+ for(const [name,width,height] of [['order-desktop',1440,1000],['order-tablet',768,1024],['order-mobile',390,844]]){await page.setViewportSize({width,height});await overflow(name);await page.screenshot({path:`artifacts/${name}.png`,fullPage:true});}
+ await language('Language','中文 Chinese');await heading('演示订单已创建');await language('语言','Deutsch German');await heading('Demo-Auftrag erstellt');await overflow('German order mobile');await language('Sprache','English English');await link('Back to dashboard');await heading('Traveler dashboard');assert.equal(await page.locator('main section').filter({has:page.getByRole('heading',{name:'Demo orders',exact:true})}).locator('a[href^="/orders/"]').count(),2);
+ results.push('Sender → validation and retained draft → request → matches → review/back → confirmation; two local orders; translated responsive order views.');
+ await page.goto(orderUrl);await page.getByRole('heading',{level:1,name:/unavailable/}).waitFor();await link('Back to dashboard');await heading('Traveler dashboard');assert.equal(await page.locator('main section').filter({has:page.getByRole('heading',{name:'Demo orders',exact:true})}).locator('a[href^="/orders/"]').count(),0);
+ await page.goto(`${baseUrl}/requests/new?trip=missing`);await page.getByRole('heading',{level:1,name:/unavailable/}).waitFor();await page.goto(`${baseUrl}/matches?request=missing`);await page.getByRole('heading',{level:1,name:/unavailable/}).waitFor();await page.goto(`${baseUrl}/matches?fromCity=invalid&date=not-a-date&weight=NaN`);await heading('Match results');
+ results.push('Reload reset is explicit; missing IDs and malformed URL values recover without crashes.');
+ assert.deepEqual(errors,[]);assert.equal(requests.some(r=>r.method==='POST'||r.url.includes('/api/')),false);results.push('No console/runtime errors, API calls or POST requests.');
+ await writeFile('artifacts/browser-results.json',JSON.stringify({baseUrl,results,errors},null,2));console.log(JSON.stringify({passed:results.length,results},null,2));
+} finally {await browser.close();}

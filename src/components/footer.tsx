@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { BrandLogo } from "./brand-logo";
 import { useLanguage } from "./language-provider";
 
@@ -25,9 +26,9 @@ export function Footer({
       <div className="container-page py-16 md:py-20">
         <div className="mb-16 grid grid-cols-2 gap-8 md:grid-cols-5 md:gap-12">
           <div className="col-span-2 md:col-span-1">
-            <a href="#" aria-label="CarryLink" className="mb-5 inline-flex">
+            <Link href="/" aria-label="CarryLink" className="mb-5 inline-flex">
               <BrandLogo light />
-            </a>
+            </Link>
             <p className="mb-4 text-sm leading-relaxed text-[#a0a0a0]">
               {f.tagline}
             </p>
@@ -44,18 +45,18 @@ export function Footer({
                 {column.links.map((link, index) => (
                   <li key={link}>
                     {columnIndex === 0 && [0, 2, 3].includes(index) ? (
-                      <a
+                      <Link
                         href={
                           index === 0
-                            ? "#matching"
+                            ? "/matches"
                             : index === 2
-                              ? "#how-it-works"
-                              : "#safety"
+                              ? "/#how-it-works"
+                              : "/#safety"
                         }
                         className={linkClass}
                       >
                         {link}
-                      </a>
+                      </Link>
                     ) : (
                       <button
                         className={linkClass}

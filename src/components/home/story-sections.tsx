@@ -1,3 +1,6 @@
+"use client";
+
+import Link from "next/link";
 import { useLanguage } from "../language-provider";
 import { SectionHeading } from "../ui/section-heading";
 import { Button } from "../ui/button";
@@ -131,12 +134,12 @@ export function MarketplacePanels({ onTraveler }: { onTraveler: () => void }) {
                 <p className="text-xs text-white/70">{h.forSendersPrice}</p>
               </div>
             </div>
-            <a
-              href="#route-search"
+            <Link
+              href="/requests/new"
               className="rounded-xl bg-ink px-5 py-3.5 text-center text-sm font-bold transition-colors hover:bg-ink-hover"
             >
               {h.createRequest}
-            </a>
+            </Link>
           </div>
         </article>
       </div>
@@ -207,12 +210,12 @@ export function ClosingCta({ onTraveler }: { onTraveler: () => void }) {
             <Button onClick={onTraveler} className="px-8 py-4">
               {t.home.ctaPublish}
             </Button>
-            <a
-              href="#route-search"
+            <Link
+              href="/requests/new"
               className="rounded-xl border border-white/15 bg-white/10 px-8 py-4 text-sm font-bold text-white transition-colors hover:bg-white/20"
             >
               {t.home.ctaFind}
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -17,7 +17,7 @@ export function TravelerIdentity({ trip }: { trip: Trip }) {
       <div>
         <h3 className="text-sm font-bold">{trip.name}</h3>
         <p className="text-xs font-semibold text-orange">
-          ✓ {t.home.tripFields.verified}
+          {t.home.tripFields.verified}
         </p>
       </div>
     </div>
@@ -56,7 +56,7 @@ export function TripCard({
       <div className="flex items-center justify-between gap-2 border-t border-soft-line pt-4">
         <div>
           <p className="text-xs text-muted">{h.tripFields.from}</p>
-          <p className="text-sm font-black">€{trip.price}/kg</p>
+          <p className="text-sm font-black">—</p>
         </div>
         <Button
           className="px-4 py-2 text-xs"

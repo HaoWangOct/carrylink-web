@@ -1,70 +1,97 @@
-# CarryLink Web
+# CarryLink
 
-Independent Next.js homepage based on the [CarryLink Figma Make project](https://www.figma.com/make/UlMimbPJrGzAYss4ohiJyd/Carrylink网站设计). The remote prototype remains unchanged. No other application pages, APIs, authentication, databases, payments, KYC, live matching, messaging, or deployment are implemented.
+**Someone is flying your way.**
 
-## Run locally
+CarryLink 是连接中国与德国旅客和寄件人的跨境携带平台原型。本项目将 Figma 设计实现为可交互的多语言网页，用于展示产品体验和前端工程实践。
 
-Use Node.js 22.13+ and npm:
+A multilingual marketplace prototype connecting travelers and senders between China and Germany. Built with Next.js, React, TypeScript and Tailwind CSS.
+
+> **展示版 / Demo only:** 行程、匹配与订单使用模拟数据；刷新页面会重置演示状态。没有真实交易、付款、身份认证或物流服务。请勿输入真实密码、证件或其他敏感资料。公开托管时账户演示 API 保持禁用。
+
+![CarryLink desktop homepage](docs/images/home-desktop.png)
+
+## 可以体验什么
+
+- 中 / 英 / 德三语切换，适配桌面、平板与手机。
+- 路线搜索、国家与城市联动、可分享的搜索 URL。
+- 样例数据的确定性匹配、排序、匹配原因和空结果状态。
+- 旅客创建、编辑、暂停、恢复演示行程。
+- 寄件人分步填写需求、预览匹配、确认并查看演示订单。
+- 本地注册与登录流程原型；线上不提供真实账户服务。
+- 表单校验、键盘可用的对话框和响应式导航。
+
+<details>
+<summary>手机端预览 / Mobile preview</summary>
+
+<img src="docs/images/home-mobile.png" alt="CarryLink mobile homepage" width="320" />
+
+</details>
+
+## 本地运行
+
+需要 Node.js 22.13+ 和 npm。展示分支不需要数据库、支付密钥或第三方账户。
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Open http://127.0.0.1:3000. This Windows workspace has a checksum-verified portable Node 24.20.0 under the ignored `.tools` directory. If Node is not on PATH:
+打开 [http://127.0.0.1:3000](http://127.0.0.1:3000)。建议先体验首页搜索，再尝试创建行程或寄件需求。样例日期固定在 2026 年 9 月，属于演示数据。
 
-```powershell
-$env:PATH = "$PWD/.tools/node-v24.20.0-win-x64;" + $env:PATH
-$env:npm_config_cache = "$PWD/.tools/npm-cache"
-npm.cmd run dev
+| 页面 | 路径 |
+| --- | --- |
+| 首页与搜索 | `/` |
+| 匹配结果 | `/matches` |
+| 旅客控制台 | `/dashboard` |
+| 创建行程 | `/trips/new` |
+| 创建寄件需求 | `/requests/new` |
+| 演示订单确认 | `/orders/review`（从匹配结果进入） |
+| 演示订单详情 | `/orders/[id]`（创建后进入；刷新即重置） |
+| 账户界面 | `/signup`、`/login`（完整模拟流程仅限本地开发） |
+
+## 技术与目录
+
+Next.js 16 App Router · React 19 · strict TypeScript · Tailwind CSS 4 · Playwright Core。
+
+```text
+src/app/          页面、布局与本地演示 API
+src/components/   响应式界面与表单组件
+src/content/      三语文案、城市与样例数据
+src/mock/         浏览器内的演示状态与匹配逻辑
+src/auth/         账户流程合约与校验
+src/server/auth/  本地账户演示适配器
+scripts/          检查脚本
+docs/            架构、决策与任务记录
 ```
 
-## Validation
+Inter 字体通过 `next/font/local` 自托管，许可证见 [OFL.txt](src/app/fonts/OFL.txt)。确切依赖版本以 `package-lock.json` 为准。
 
-With the dev server running:
+## 验证
 
 ```sh
-npm run typecheck
 npm run lint
+npm run typecheck
 npm run build
+```
+
+开发服务器启动后，另一个终端执行：
+
+```sh
 npm run test:browser
 ```
 
-Browser checks use `playwright-core` with an existing Chrome/Edge/Chromium installation; no browser is downloaded. Set `CHROME_PATH` if auto-discovery does not find your browser. Set `BASE_URL` to test a different local server. Screenshots and the check report are written to ignored `artifacts/`.
+浏览器检查使用已安装的 Chrome / Edge / Chromium；必要时设置 `CHROME_PATH`，不会自动下载浏览器。覆盖 1440 / 768 / 390 / 320 px、三语切换、键盘对话框、搜索、旅客与寄件人流程及演示订单。报告与原始截图输出至忽略的 `artifacts/`。
 
-The suite checks four viewport widths (1440, 768, 390, 320), visible content, overflow, English/Chinese/German switching, mobile navigation, dependent cities, route validation, search summary updates, dialog keyboard behavior, focus restoration, console errors, and absence of API/mutation requests.
+## 在线展示
 
-## Structure
+项目保留 Next.js 服务端路由，不能直接把源代码交给 GitHub Pages。使用支持 Next.js 的托管平台；Vercel 导入与设置见 [部署说明](docs/deployment.md)。在线地址将在部署成功后补充。
 
-- `src/app/`: App Router homepage, metadata, local Inter font, and Tailwind theme.
-- `src/components/home/`: HomeExperience, Hero, RouteSearch, TrustSignals, HowItWorks, MarketplacePanels, TravelerIdentity, TripCard, UpcomingTrips, MatchingPreview, SafetySection, ClosingCta.
-- `src/components/`: Navigation, Footer, BrandLogo, LanguageProvider, PreviewDialog.
-- `src/components/ui/`: Button and SectionHeading.
-- `src/content/`: homepage translations, preview copy, typed sample trips and stable city identifiers.
-- `public/carrylink-mark.svg`: exact vector paths retrieved from the Make logo component.
-- `scripts/check-browser.mjs`: browser validation and screenshots.
-- `docs/implementation-report.md`: source comparison, commands, results, and remaining work.
+在线展示不需要环境密钥或数据库；不要设置 `CARRYLINK_AUTH_MODE=demo` 或启用本地数据库诊断入口。账户演示 API 同时限制为本机访问，公开站点显示账户服务不可用是预期行为。
 
-The server page and layout prerender the homepage; a client boundary owns language and UI interactions. There is one application route, `/`, plus Next.js's standard not-found response.
+## 设计与后续工作
 
-## Interaction boundaries
+视觉参考：[CarryLink Figma Make](https://www.figma.com/make/UlMimbPJrGzAYss4ohiJyd/Carrylink网站设计)，历史参考节点 `0:1`。本次整理沿用现有界面，没有重新设计页面或修改运营规则。
 
-Navigation links scroll to homepage sections. Search validates basic input and updates the request summary; it does not filter or rank travelers. Cards and scores are explicitly labeled sample data. The initial summary uses the search form's route, correcting the prototype's inconsistent direction.
+真实身份、数据库业务接入、支付、消息、交接与纠纷处理属于后续范围。正式运营仍需要明确的业务、隐私、海关和财务决策；原型不代表这些政策已获批准。
 
-Trip, traveler, account, safety, and unavailable footer actions open local dialogs. No action creates a trip, request, account, payment, or message. Language changes remain in memory and reset on reload; city IDs remain stable across languages. Native dialogs provide modal focus behavior and Escape dismissal.
-
-## Design source
-
-The MCP supplied Home, Nav, Footer, CarrylinkLogo, translations, and CSS. These define section order, copy, geometry, and colors. The implementation keeps Inter, orange `#fc5000`, near-black `#070607`, rounded cards, a 1200px content area, and alternating surfaces.
-
-Mobile adjustments include a menu, stacked fields, responsive headings, larger button targets, and less crowded cards. Muted text is slightly darker for readability; sample labels and preview dialogs are additions. Native dates, select arrows, flags/emoji, and Chinese fallback fonts vary by browser/OS. Comparison used structured Make source and local Chrome screenshots; the MCP did not return a rendered Make screenshot for pixel comparison.
-
-Inter is self-hosted through `next/font/local`; its SIL Open Font License is in `src/app/fonts/OFL.txt`. No font CDN is contacted at runtime.
-
-## Dependencies
-
-Runtime: Next.js 16.3.4, React/React DOM 19.2.8. Development: TypeScript 6.0.3, Tailwind/PostCSS plugin 4.3.3, Next.js ESLint configuration, ESLint, React/Node types, and Playwright Core. Exact versions and the lockfile keep installs reproducible. No UI, icon, state, auth, or service SDKs were added.
-
-ESLint is pinned to 9.39.5 because the React lint plugin bundled with Next.js 16.3.4 crashes on ESLint 10.10.0 (`contextOrFilename.getFilename is not a function`). npm marks ESLint 9 deprecated; revisit this development-tool pin when the upstream plugin supports ESLint 10. Lint passes with zero warnings on the pinned version.
-
-Recommended next task: specify and implement the sender request form as a separate UI task, including item eligibility, dimensions, validation, and review, before choosing backend services.
+项目历史：[前端交互](docs/progress/2026-09-10.md) · [账户流程](docs/progress/2026-09-11-account-onboarding.md) · [架构决策](docs/decisions/README.md)。
