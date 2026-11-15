@@ -1,28 +1,28 @@
-# CarryLink 展示部署
+# CarryLink showcase deployment
 
-范围：公开可浏览的产品原型，不接真实账户、资金或数据库，保留现有 Next.js 架构。
+Scope: a publicly accessible product prototype that preserves the existing Next.js architecture. It does not connect real accounts, funds or a database.
 
-## 当前部署
+## Current deployment
 
-- 公开演示：https://carrylink-web.vercel.app/
-- Vercel 项目：https://vercel.com/carrylink/carrylink-web
-- 生产部署 ID：`dpl_6X5CfyPfG2xXExiiUio7WKBGga72`
-- 来源：GitHub `main`，展示合并提交 `5d4d1e8b9ca7a343229a7c93055bc78fd3574cfe`。
-- 2026-11-15：Vercel 显示 Deployed to Production；未登录 HTTP 首页 200、账户演示 API 503；线上现有浏览器回归 7 组通过。
+- [Public demo](https://carrylink-web.vercel.app/)
+- [Vercel project](https://vercel.com/carrylink/carrylink-web)
+- Initial production deployment ID: `dpl_6X5CfyPfG2xXExiiUio7WKBGga72`
+- Initial source: GitHub `main`, showcase merge commit `5d4d1e8b9ca7a343229a7c93055bc78fd3574cfe`.
+- Verified on November 15, 2026: Vercel reported **Deployed to Production**; an unauthenticated homepage request returned 200, the account demo API returned 503, and all seven existing browser regression groups passed against the live site.
 
-## Vercel 导入
+## Import into Vercel
 
-1. 登录 Vercel，在 New Project 中导入 `HaoWangOct/carrylink-web`。
-2. 选择已验证分支；本次准备分支为 `chore/github-showcase`。若生产分支仍为 `main`，先核对其是否包含展示提交，避免部署旧版首页。
-3. Framework Preset 使用 Next.js，Root Directory 为仓库根目录；安装命令 `npm ci`，构建命令 `npm run build`，输出目录使用框架默认值。Node.js 选择满足 `package.json` 要求的版本。
-4. 不添加环境变量或数据库连接；账户模式保持默认禁用。不要上传 `.env`，不要执行迁移、seed 或 reset。
-5. 部署完成后，无需登录即可检查首页、三语切换、手机布局、搜索、行程与寄件需求演示。确认 `/api/auth/demo` 返回 503；真实登录与验证码不可用。
-6. 将部署实际返回的公开 URL 填入 README 与 GitHub About 的 Website；不要使用部署控制台地址。
+1. Sign in to Vercel and import `HaoWangOct/carrylink-web` from New Project.
+2. Deploy the verified `main` branch. Confirm it contains the intended showcase changes.
+3. Use the Next.js framework preset and repository root. Use `npm ci` for installation, `npm run build` for the build command, and the framework's default output directory. Select a Node.js version satisfying `package.json`.
+4. Add no environment variables or database connection. Leave account mode disabled by default. Do not upload `.env` files or run migrations, seed commands or resets.
+5. After deployment, check the homepage, language switching, mobile layout, search, and traveler and sender demo flows without signing in. Confirm `/api/auth/demo` returns 503; real login and verification codes remain unavailable.
+6. Add the actual public deployment URL to the README and GitHub About Website field. Do not use the deployment dashboard URL as the demo link.
 
-官方依据：[Git deployments](https://vercel.com/docs/git)、[GitHub integration](https://vercel.com/docs/git/vercel-for-github)。本地框架依据：`node_modules/next/dist/docs/01-app/01-getting-started/17-deploying.md`。
+References: [Vercel Git deployments](https://vercel.com/docs/git) and [GitHub integration](https://vercel.com/docs/git/vercel-for-github). Local framework reference: `node_modules/next/dist/docs/01-app/01-getting-started/17-deploying.md`.
 
-## 发布范围与回退
+## Publication scope and rollback
 
-本次不包含工作区中未提交的 PostgreSQL / Prisma 实验。发布来自明确 Git 提交，不上传整个本地目录。
+The showcase excludes the workspace's uncommitted PostgreSQL and Prisma experiments. Deploy a specific Git commit rather than uploading the entire local working directory.
 
-回退时在托管平台选择先前成功的展示部署；不需要数据库恢复。公开代码同时公开既有提交历史。发布前检查历史中的凭据与不应公开的文件；自动扫描只能发现部分常见格式。
+To roll back, select a previous successful showcase deployment in the hosting platform. No database recovery is required. Public source also exposes the existing commit history. Check for credentials and files that should remain private before publication; automated scanning only detects some common patterns.
