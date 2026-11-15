@@ -2,6 +2,8 @@
 
 **Someone is flying your way.**
 
+[在线演示 / Live demo](https://carrylink-web.vercel.app/) · [GitHub](https://github.com/HaoWangOct/carrylink-web)
+
 CarryLink 是连接中国与德国旅客和寄件人的跨境携带平台原型。本项目将 Figma 设计实现为可交互的多语言网页，用于展示产品体验和前端工程实践。
 
 A multilingual marketplace prototype connecting travelers and senders between China and Germany. Built with Next.js, React, TypeScript and Tailwind CSS.
@@ -84,7 +86,7 @@ npm run test:browser
 
 ## 在线展示
 
-项目保留 Next.js 服务端路由，不能直接把源代码交给 GitHub Pages。使用支持 Next.js 的托管平台；Vercel 导入与设置见 [部署说明](docs/deployment.md)。在线地址将在部署成功后补充。
+项目保留 Next.js 服务端路由，不能直接把源代码交给 GitHub Pages。使用支持 Next.js 的托管平台；Vercel 导入与设置见 [部署说明](docs/deployment.md)。公开演示：[carrylink-web.vercel.app](https://carrylink-web.vercel.app/)。
 
 在线展示不需要环境密钥或数据库；不要设置 `CARRYLINK_AUTH_MODE=demo` 或启用本地数据库诊断入口。账户演示 API 同时限制为本机访问，公开站点显示账户服务不可用是预期行为。
 

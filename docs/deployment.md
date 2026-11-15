@@ -2,6 +2,14 @@
 
 范围：公开可浏览的产品原型，不接真实账户、资金或数据库，保留现有 Next.js 架构。
 
+## 当前部署
+
+- 公开演示：https://carrylink-web.vercel.app/
+- Vercel 项目：https://vercel.com/carrylink/carrylink-web
+- 生产部署 ID：`dpl_6X5CfyPfG2xXExiiUio7WKBGga72`
+- 来源：GitHub `main`，展示合并提交 `5d4d1e8b9ca7a343229a7c93055bc78fd3574cfe`。
+- 2026-11-15：Vercel 显示 Deployed to Production；未登录 HTTP 首页 200、账户演示 API 503；线上现有浏览器回归 7 组通过。
+
 ## Vercel 导入
 
 1. 登录 Vercel，在 New Project 中导入 `HaoWangOct/carrylink-web`。

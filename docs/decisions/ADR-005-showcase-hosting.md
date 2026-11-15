@@ -1,10 +1,10 @@
 # 005: GitHub source showcase and Next.js demo hosting
 
-- Status: Proposed (Vercel hosting); accepted scope: GitHub showcase and public demo
+- Status: Accepted for prototype showcase only
 - Date: 2026-11-15
 - Author: Implementation Engineer (primary agent)
 - Decision authority: Project owner
-- Approval evidence: User requested GitHub project display, selected GitHub + online demo, and explicitly selected making the repository public in this conversation.
+- Approval evidence: User requested GitHub project display, selected GitHub + online demo, explicitly selected making the repository public, approved merging to main and continuing deployment, and completed Vercel account verification in this conversation (2026-11-15).
 - Related task: [Showcase task](../progress/2026-11-15-github-showcase.md)
 - Supersedes / superseded by: None
 
@@ -19,13 +19,13 @@ Existing application uses Next.js App Router with dynamic order routes and a loc
 - Native Next.js hosting through Vercel: retains framework and routes, supports Git imports, and requires the owner's account login.
 - Sites hosting: available deployment format is static assets or a Cloudflare Worker; adapting this repository is outside this bounded showcase task.
 
-## Proposed decision
+## Decision
 
 Publish a documented source branch, retaining existing framework and behavior. Use Vercel for the live demo after owner login; do not introduce database or auth secrets. Keep repository visibility changes tied to explicit user authorization. No new hosting account or paid plan is accepted on the owner's behalf.
 
 ## Consequences
 
-Screenshots and accurate feature boundaries make the project reviewable. Public authentication stays unavailable by design. Fixture dates remain fixed, and browser memory resets on reload. Online hosting remains unverified until a successful deployment and smoke check.
+Screenshots and accurate feature boundaries make the project reviewable. Public authentication stays unavailable by design. Fixture dates remain fixed, and browser memory resets on reload. Vercel production deployment and unauthenticated HTTP/browser checks passed on 2026-11-15; see task record.
 
 ## Human approval requirements
 

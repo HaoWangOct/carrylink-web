@@ -24,7 +24,9 @@ Replaced outdated homepage-only README with bilingual project introduction, curr
 - Current workspace: `npm run test:browser`: PASS, all seven groups, including mobile/desktop, languages, matching, sender/traveler flows and demo orders; no runtime/console errors or API/POST requests.
 - Committed source snapshot extracted to `/private/tmp/carrylink-showcase-20261115`, excluding uncommitted database work: lint/type/build PASS. Initial build failed because Turbopack rejects a node_modules symlink outside its root; copied installed dependencies into the temporary snapshot and build then passed. Not a clean dependency install.
 - All locally available Git history scanned for common private-key, GitHub-token, AWS-access-key and live Stripe-secret patterns: no matches. No `.env` / `.env.local` tracked history found. This is a bounded scan, not a comprehensive security audit.
-- No database, payment or production mutations/checks performed.
+- Clean-source production server: `BASE_URL=http://127.0.0.1:3001 npm run test:browser`: PASS, seven groups. `GET /api/auth/demo`: 503 as expected. Local server/network checks required sandbox escalation.
+- Live deployment: `BASE_URL=https://carrylink-web.vercel.app npm run test:browser`: PASS, seven groups, no runtime/console errors or API/POST requests. Unauthenticated GET `/`: 200; GET `/api/auth/demo`: 503.
+- No database or payment mutations/checks performed.
 
 ## Decisions
 
@@ -32,12 +34,12 @@ User authorized public source and live demo; see [ADR-005](../decisions/ADR-005-
 
 ## Known limitations
 
-Vercel not logged in when inspected; owner asked to complete login/registration. Live URL not yet available. Default GitHub branch is old `main`; do not imply branch preparation updates the default branch. Existing independent reviews remain outstanding as documented in prior task records. Dates are fixed fixtures; no real account, payment, messaging or shipment service exists.
+Owner completed Vercel login and reported completing the GitHub connection. Explicit single-repository GitHub App permission approval received in chat; Vercel showed `HaoWangOct/carrylink-web` as importable. Imported `main` into Carrylink Hobby scope with Next.js defaults, project name `carrylink-web`, no added environment variables. Owner completed additional email identity verification. Vercel confirmed Deployed to Production in 32 seconds, deployment `dpl_6X5CfyPfG2xXExiiUio7WKBGga72`. Public URL: https://carrylink-web.vercel.app/ ; immutable deployment URL: https://carrylink-qlxcjjz2r-carrylink.vercel.app/ . GitHub About Website updated to public URL. PR #1 merged to `main` after explicit owner authorization; merge commit `5d4d1e8b9ca7a343229a7c93055bc78fd3574cfe`. Existing independent reviews remain outstanding as documented in prior task records. Dates are fixed fixtures; no real account, payment, messaging or shipment service exists.
 
 ## Review
 
-Sequential self-review: README capabilities checked against routes, mock provider, auth adapter and browser script. Publication stages only explicitly named showcase files; existing uncommitted database work remains untouched. Independent review not performed. `git diff --check`: PASS. Desktop screenshot visually inspected. GitHub visibility independently re-read via CLI: PUBLIC. Live deployment still pending owner login.
+Sequential self-review: README capabilities checked against routes, mock provider, auth adapter and browser script. Publication stages only explicitly named showcase files; existing uncommitted database work remains untouched. Independent review not performed. `git diff --check`: PASS. Desktop screenshot visually inspected. GitHub visibility independently re-read via CLI: PUBLIC. Live deployment confirmed by Vercel success page, unauthenticated HTTP 200, and seven passing online browser regression groups. Auth demo endpoint remains 503.
 
 ## Next steps
 
-Complete clean source checks, commit and push the showcase branch, create a reviewable PR, apply authorized public visibility, then finish Vercel import after owner login. Record actual URLs and deployment verification; do not invent an online address.
+Source commit `98524c2` pushed; [PR #1](https://github.com/HaoWangOct/carrylink-web/pull/1) merged with explicit owner approval. Public visibility and main commit verified via GitHub CLI. Public prototype deployment complete. README and deployment docs link the verified site; follow-up documentation publication uses a PR rather than direct main commits. Future feature development and real trading remain separate tasks.
